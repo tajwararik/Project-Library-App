@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Library App</h1>
+    </header>
+    <main>
+      <button type="button">New Book</button>
+      <dialog>
+        <form action="#" method="dialog">
+          <h3>Add a new book</h3>
+          <span>&times;</span>
+          <label for="title"
+            >Book title: <input type="text" name="title" id="title" autofocus
+          /></label>
+          <label for="author-name"
+            >Author name:
+            <input type="text" name="author-name" id="author-name"
+          /></label>
+          <label for="page-numbers"
+            >Page numbers:
+            <input type="number" min="0" name="number" id="page-numbers"
+          /></label>
+          <label for="read"
+            ><input type="radio" name="reading-status" id="read" value="Read" />
+            Read</label
+          >
+          <label for="not-read"
+            ><input
+              type="radio"
+              name="reading-status"
+              id="not-read"
+              value="Not read yet"
+            />
+            Not read yet</label
+          >
+          <button type="submit">Submit</button>
+        </form>
+      </dialog>
+
+      <div class="collection">
+        <h3>Added books</h3>
+        <div></div>
+      </div>
+    </main>
+  </body>
+</html>
