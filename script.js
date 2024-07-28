@@ -15,16 +15,18 @@ modalClose.addEventListener("click", () => {
 
 const myLibrary = [];
 
-function Book(title, author, pages, status) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.status = status;
-}
+class Book {
+  constructor(title, author, pages, status) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
+  }
 
-Book.prototype.toggleStatus = function () {
-  this.status = this.status === "Read" ? "Not read yet" : "Read";
-};
+  toggleStatus() {
+    this.status = this.status === "Read" ? "Not read yet" : "Read";
+  }
+}
 
 function addToLibrary() {
   const title = form.querySelector("#title").value;
