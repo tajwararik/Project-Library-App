@@ -132,6 +132,7 @@ function changeStatus(index) {
   displayBooks();
 }
 
-submitButton.addEventListener("click", () => {
+submitButton.addEventListener("click", (e) => {
+  e.preventDefault();
   addToLibrary();
 });
