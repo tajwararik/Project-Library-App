@@ -5,6 +5,10 @@ const modalClose = document.querySelector("span");
 const form = document.querySelector("form");
 const submitButton = form.querySelector('button[type="submit"]');
 
+const titleInput = form.querySelector("#title");
+const authorInput = form.querySelector("#author-name");
+const numberOfPagesInput = form.querySelector("#page-numbers");
+
 // Opening the form
 modalOpen.addEventListener("click", () => {
   dialog.showModal();
@@ -12,6 +16,7 @@ modalOpen.addEventListener("click", () => {
 
 // Closing the form
 modalClose.addEventListener("click", () => {
+  form.reset();
   dialog.close();
 });
 
@@ -33,10 +38,22 @@ class Book {
   }
 }
 
+titleInput.addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
+authorInput.addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
+numberOfPagesInput.addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
 function addToLibrary() {
-  const title = form.querySelector("#title").value;
-  const author = form.querySelector("#author-name").value;
-  const numberOfPages = form.querySelector("#page-numbers").value;
+  const title = titleInput.value;
+  const author = authorInput.value;
+  const numberOfPages = numberOfPagesInput.value;
   let readingStatus = "";
 
   const radioCheck = form.querySelectorAll('input[type="radio"]');
@@ -46,21 +63,38 @@ function addToLibrary() {
     if (radio.checked) readingStatus = radio.value;
   });
 
+  if (!titleInput.checkValidity()) {
+    titleInput.setCustomValidity("Please enter the book title!");
+    titleInput.reportValidity();
+    return;
+  } else {
+    titleInput.setCustomValidity("");
+  }
+
+  if (!authorInput.checkValidity()) {
+    authorInput.setCustomValidity("Please enter the author name!");
+    authorInput.reportValidity();
+    return;
+  } else {
+    authorInput.setCustomValidity("");
+  }
+
+  if (!numberOfPagesInput.checkValidity() || numberOfPages <= 0) {
+    numberOfPagesInput.setCustomValidity("Please enter correct page numbers!");
+    numberOfPagesInput.reportValidity();
+    return;
+  } else {
+    numberOfPagesInput.setCustomValidity("");
+  }
+
   // Creating objects for books
   const newBook = new Book(title, author, numberOfPages, readingStatus);
 
-  if (
-    title !== "" &&
-    author !== "" &&
-    numberOfPages !== "" &&
-    readingStatus !== ""
-  ) {
-    myLibrary.push(newBook);
+  myLibrary.push(newBook);
 
-    displayBooks();
-  }
-
+  displayBooks();
   form.reset();
+  dialog.close();
 }
 
 function displayBooks() {
@@ -132,7 +166,7 @@ function changeStatus(index) {
   displayBooks();
 }
 
-submitButton.addEventListener("click", (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   addToLibrary();
 });
