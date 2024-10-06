@@ -39,18 +39,22 @@ class Book {
   }
 }
 
+// Removing previous custom validity
 titleInput.addEventListener("input", function () {
   this.setCustomValidity("");
 });
 
+// Removing previous custom validity
 authorInput.addEventListener("input", function () {
   this.setCustomValidity("");
 });
 
+// Removing previous custom validity
 numberOfPagesInput.addEventListener("input", function () {
   this.setCustomValidity("");
 });
 
+// Removing previous custom validity
 radioButtonInput.addEventListener("input", function () {
   this.setCustomValidity("");
 });
@@ -68,6 +72,7 @@ function addToLibrary() {
     if (radio.checked) readingStatus = radio.value;
   });
 
+  // Setting custom validation for title input
   if (!titleInput.checkValidity()) {
     titleInput.setCustomValidity("Please enter the book title!");
     titleInput.reportValidity();
@@ -76,6 +81,7 @@ function addToLibrary() {
     titleInput.setCustomValidity("");
   }
 
+  // Setting custom validation for author input
   if (!authorInput.checkValidity()) {
     authorInput.setCustomValidity("Please enter the author name!");
     authorInput.reportValidity();
@@ -84,6 +90,7 @@ function addToLibrary() {
     authorInput.setCustomValidity("");
   }
 
+  // Setting custom validation for page number input
   if (!numberOfPagesInput.checkValidity() || numberOfPages <= 0) {
     numberOfPagesInput.setCustomValidity("Please enter correct page numbers!");
     numberOfPagesInput.reportValidity();
@@ -92,6 +99,7 @@ function addToLibrary() {
     numberOfPagesInput.setCustomValidity("");
   }
 
+  // Setting custom validation for radio input
   if (readingStatus === "") {
     radioButtonInput.setCustomValidity("Please select one of these options!");
     radioButtonInput.reportValidity();
@@ -180,6 +188,7 @@ function changeStatus(index) {
 }
 
 form.addEventListener("submit", (e) => {
+  // Preventing default submission
   e.preventDefault();
   addToLibrary();
 });
