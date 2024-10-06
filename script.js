@@ -8,6 +8,7 @@ const submitButton = form.querySelector('button[type="submit"]');
 const titleInput = form.querySelector("#title");
 const authorInput = form.querySelector("#author-name");
 const numberOfPagesInput = form.querySelector("#page-numbers");
+const radioButtonInput = form.querySelectorAll("input[type='radio']")[0];
 
 // Opening the form
 modalOpen.addEventListener("click", () => {
@@ -50,6 +51,10 @@ numberOfPagesInput.addEventListener("input", function () {
   this.setCustomValidity("");
 });
 
+radioButtonInput.addEventListener("input", function () {
+  this.setCustomValidity("");
+});
+
 function addToLibrary() {
   const title = titleInput.value;
   const author = authorInput.value;
@@ -85,6 +90,14 @@ function addToLibrary() {
     return;
   } else {
     numberOfPagesInput.setCustomValidity("");
+  }
+
+  if (readingStatus === "") {
+    radioButtonInput.setCustomValidity("Please select one of these options!");
+    radioButtonInput.reportValidity();
+    return;
+  } else {
+    radioButtonInput.setCustomValidity("");
   }
 
   // Creating objects for books
